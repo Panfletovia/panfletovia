@@ -1,0 +1,288 @@
+2015-03-04 16:31:01 Error: [MissingControllerException] Controller class Authorization.jsonController could not be found.
+Exception Attributes: array (
+  'class' => 'Authorization.jsonController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:31:13 Error: [MissingPluginException] Plugin Api could not be found.
+Exception Attributes: array (
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(227): CakePlugin::path('Api')
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(549): App::path('Controller', 'Api')
+#2 [internal function]: App::load('PrivateApiAppCo...')
+#3 /opt/lampp/htdocs/panfletovia/app/Controller/AuthorizationController.php(11): spl_autoload_call('PrivateApiAppCo...')
+#4 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(567): include('/opt/lampp/htdo...')
+#5 [internal function]: App::load('AuthorizationCo...')
+#6 [internal function]: spl_autoload_call('AuthorizationCo...')
+#7 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(266): class_exists('AuthorizationCo...')
+#8 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(235): Dispatcher->_loadController(Object(CakeRequest))
+#9 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(158): Dispatcher->_getController(Object(CakeRequest), Object(CakeResponse))
+#10 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#11 {main}
+2015-03-04 16:32:16 Error: Fatal Error (1): Class 'AppComponent' not found in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/Component/AdvancedDBComponent.php, line 12]
+2015-03-04 16:32:16 Error: [FatalErrorException] Class 'AppComponent' not found
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:33:06 Error: Fatal Error (1): Class 'AppComponent' not found in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/Component/AdvancedDBComponent.php, line 12]
+2015-03-04 16:33:06 Error: [FatalErrorException] Class 'AppComponent' not found
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:33:17 Error: Fatal Error (1): Class 'AppComponent' not found in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/Component/AdvancedDBComponent.php, line 12]
+2015-03-04 16:33:17 Error: [FatalErrorException] Class 'AppComponent' not found
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:34:03 Error: Fatal Error (1): Class 'AppComponent' not found in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/Component/AdvancedDBComponent.php, line 12]
+2015-03-04 16:34:03 Error: [FatalErrorException] Class 'AppComponent' not found
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12)
+#1 [internal function]: ErrorHandler::handleError(1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Class 'AppCompo...', '/opt/lampp/htdo...', 12, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:40:35 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:40:41 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:41:23 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:41:25 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:41:25 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:41:25 Error: [MissingControllerException] Controller class AuthorizationController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizationController',
+  'plugin' => NULL,
+)
+Request URL: /panfletovia/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-04 16:47:15 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:47:37 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:48:05 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:48:51 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:48:52 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:48:54 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:49:12 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:49:30 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:49:37 Error: [MissingComponentException] Component class PeriodPurchaseComponent could not be found.
+Exception Attributes: array (
+  'class' => 'PeriodPurchaseComponent',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/ComponentCollection.php(53): ComponentCollection->load('Api.PeriodPurch...', Array)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(643): ComponentCollection->init(Object(AuthorizationController))
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(188): Controller->constructClasses()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-04 16:50:41 Error: Fatal Error (1): Call to a member function allow() on null in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/ApiAppController.php, line 37]
+2015-03-04 16:50:41 Error: [FatalErrorException] Call to a member function allow() on null
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/opt/lampp/htdo...', 37)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/opt/lampp/htdo...', 37, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/opt/lampp/htdo...', 37, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:51:02 Error: Fatal Error (1): Call to a member function isXml() on null in [/opt/lampp/htdocs/panfletovia/app/Plugin/Api/Controller/ApiAppController.php, line 63]
+2015-03-04 16:51:02 Error: [FatalErrorException] Call to a member function isXml() on null
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/Error/ErrorHandler.php(213): ErrorHandler::handleFatalError(1, 'Call to a membe...', '/opt/lampp/htdo...', 63)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to a membe...', '/opt/lampp/htdo...', 63, Array)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to a membe...', '/opt/lampp/htdo...', 63, Array)
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Core/App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2015-03-04 16:51:08 Error: [MissingViewException] View file "Authorization/index.ctp" is missing.
+Exception Attributes: array (
+  'file' => 'Authorization/index.ctp',
+)
+Request URL: /panfletovia/api/authorization.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/lib/Cake/View/View.php(470): View->_getViewFileName(NULL)
+#1 /opt/lampp/htdocs/panfletovia/lib/Cake/Controller/Controller.php(960): View->render(NULL, NULL)
+#2 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(200): Controller->render()
+#3 /opt/lampp/htdocs/panfletovia/lib/Cake/Routing/Dispatcher.php(167): Dispatcher->_invoke(Object(AuthorizationController), Object(CakeRequest))
+#4 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2015-03-09 16:13:43 Error: [MissingControllerException] Controller class AuthorizarionController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizarionController',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorizarion
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2015-03-09 16:13:46 Error: [MissingControllerException] Controller class AuthorizarionController could not be found.
+Exception Attributes: array (
+  'class' => 'AuthorizarionController',
+  'plugin' => 'Api',
+)
+Request URL: /panfletovia/api/authorizarion.json
+Stack Trace:
+#0 /opt/lampp/htdocs/panfletovia/app/webroot/index.php(118): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

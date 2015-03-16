@@ -30,4 +30,15 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	public function getLastQuery($fromWhereClause = false, $typeQuery = 'WHERE'){
+        $dbo = $this->getDatasource();
+        $logs = $dbo->getLog();
+        $lastLog = end($logs['log']);
+        if ($fromWhereClause) {
+            return strstr($lastLog['query'], $typeQuery);
+        }
+        return $lastLog['query'];
+    }
+	
 }

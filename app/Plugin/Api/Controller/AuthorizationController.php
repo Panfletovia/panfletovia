@@ -12,7 +12,8 @@ App::uses('ApiAppController', 'Api.Controller');
 class AuthorizationController extends ApiAppController {
 
 	public $uses = array(
-		'Entidade', 
+		'Cliente',
+		'UsuarioPerfil'
 	);
 
 	public function index(){
@@ -48,12 +49,22 @@ class AuthorizationController extends ApiAppController {
 			throw new ApiException('Usuário ou senha inválidos', 400);
 		}
 
-		$comparatorPassword = md5('panfleto' . $password . 'via');
+		$this->Cliente->recursive = 2;
+		$fields = array(
+			// 'Cliente.id'
+			// 'Cliente.*',
+			// 'Perfil.*'
+		);
+		$fullCliente = $this->Cliente->findClient($username, $password, $fields);
 
-		$cliente = $this->Entidade->findByLoginAndSenha($username, $comparatorPassword);
+		if(empty($fullCliente)){
+			throw new ApiException('Usuário ou senha inválidos', 400);		
+		}
 
-		die(var_dump($cliente));
-		die(var_dump('add', $username, $password));
-		throw new NotImplementedException('');
+		$cliente = $fullCliente['Cliente'];
+		$clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
+
+		die(var_dump($cliente, $clientePerfil));
+		$this->data = $fullCliente;
 	}
 }// End Class

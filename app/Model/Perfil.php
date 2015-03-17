@@ -15,4 +15,11 @@ class Perfil extends AppModel {
      */
     public $useTable = 'perfil';
 
+    public $hasMany = array(
+        'Perfil' => array(
+            'className' => 'Perfil',
+            'foreignKey' => 'id'
+        )
+    );
+
 }// End Class

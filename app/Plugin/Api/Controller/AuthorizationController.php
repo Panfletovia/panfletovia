@@ -49,22 +49,24 @@ class AuthorizationController extends ApiAppController {
 			throw new ApiException('Usuário ou senha inválidos', 400);
 		}
 
-		$this->Cliente->recursive = 2;
+		// $this->Cliente->recursive = 2;
 		$fields = array(
-			// 'Cliente.id'
-			// 'Cliente.*',
-			// 'Perfil.*'
+			'Cliente.id'
 		);
+		
 		$fullCliente = $this->Cliente->findClient($username, $password, $fields);
+		die(var_dump($fullCliente));
 
 		if(empty($fullCliente)){
 			throw new ApiException('Usuário ou senha inválidos', 400);		
 		}
 
 		$cliente = $fullCliente['Cliente'];
-		$clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
+		$clientePerfil = $fullCliente['UsuarioPerfil'];
 
-		die(var_dump($cliente, $clientePerfil));
+		echo '<PRE>';
+		die(var_dump($fullCliente['UsuarioPerfil']));
+
 		$this->data = $fullCliente;
 	}
 }// End Class

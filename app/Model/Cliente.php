@@ -11,13 +11,6 @@ class Cliente extends AppModel {
      */
     public $useTable = 'cliente';
 
-    public $hasMany = array(
-        'UsuarioPerfil' => array(
-            'className' => 'UsuarioPerfil',
-            'foreignKey' => 'usuario_id'
-        )
-    );
-
     public function findClient($username, $password, $fieldsQuery){
         $comparatorPassword = md5(BEFORE_ENCRYPT . $password . AFTER_ENCRYPT);
         return $this->find('first', array(

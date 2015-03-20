@@ -61,10 +61,10 @@ class AuthorizationController extends ApiAppController {
 			throw new ApiException('Usuário ou senha inválidos', 400);		
 		}
 
-		$cliente = $fullCliente['Cliente'];
-		$clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
+		// $cliente = $fullCliente['Cliente'];
+		// $clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
 
-		die(var_dump($cliente, $clientePerfil));
+		// die(var_dump($cliente, $clientePerfil));
 		$this->data = $fullCliente;
 	}
 }// End Class

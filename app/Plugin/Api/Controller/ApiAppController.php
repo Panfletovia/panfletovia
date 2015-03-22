@@ -62,7 +62,7 @@ class ApiAppController extends AppController {
     	if ($this->RequestHandler->isXml()) {
     		$data = array($data);
     	}
-    	
+
         $this->set(array(
             'data' => $data,
             '_serialize' => 'data'

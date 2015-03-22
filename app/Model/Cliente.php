@@ -4,6 +4,13 @@ App::uses('AppModel', 'Model');
 
 class Cliente extends AppModel {
 
+    //  public $hasMany = array(
+    //     'Perfil' => array(
+    //         'className' => 'Perfil',
+    //         'conditions' => array('Perfil.cliente_id' => 'Cliente.id')
+    //     )
+    // );
+
     /**
      * Use table
      *
@@ -11,24 +18,16 @@ class Cliente extends AppModel {
      */
     public $useTable = 'cliente';
 
-    public $hasMany = array(
-        'UsuarioPerfil' => array(
-            'className' => 'UsuarioPerfil',
-            'foreignKey' => 'usuario_id'
-        )
-    );
-
-    public function findClient($username, $password, $fieldsQuery){
+    public function findClient($username, $password, $fieldsQuery = array()){
         $comparatorPassword = md5(BEFORE_ENCRYPT . $password . AFTER_ENCRYPT);
         return $this->find('first', array(
-            $fields = $fieldsQuery,
-            $conditions = array(
+            'fields' => $fieldsQuery,
+            'conditions' => array(
                 'ativo' => 1,
                 'login' => $username,
                 'senha' => $comparatorPassword
             )
         ));
-        // return $this->findByAtivoAndLoginAndSenha(1, $username, $comparatorPassword);
     }// End Method 'findClient'
     
     /**

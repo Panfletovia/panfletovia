@@ -3,16 +3,16 @@
 App::uses('AppModel', 'Model');
 
 /**
- * Perfil Model
+ * SubPerfil Model
  *
  */
-class Perfil extends AppModel {
+class SubPerfil extends AppModel {
 
     /**
      * Use table
      *
      * @var mixed False or table name
      */
-    public $useTable = 'perfil';
-    
+    public $useTable = 'sub_perfil';
+
 }// End Class

@@ -15,13 +15,4 @@ class UsuarioPerfil extends AppModel {
      */
     public $useTable = 'usuario_perfil';
 
-    // public $hasOne = 'Perfil';
-
-      public $belongsTo = array(
-        'Perfil' => array(
-            'className' => 'Perfil',
-            'foreignKey' => 'id'
-        )
-    );
-
 }// End Class

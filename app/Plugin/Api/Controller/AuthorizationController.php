@@ -6,7 +6,7 @@ App::uses('ApiAppController', 'Api.Controller');
 
 /**
  * 
- * Classe que efetua a autenticação do operador do sistema e efetua a abertura do caixa.
+ * Classe que efetua a autenticação do usuário na API
  * 
  */
 class AuthorizationController extends ApiAppController {
@@ -17,54 +17,41 @@ class AuthorizationController extends ApiAppController {
 	);
 
 	public function index(){
-		throw new NotImplementedException('Index');
+		throw new NotImplementedException('index');
 	}// End action 'index'
 
 	public function edit($id){
-		throw new NotImplementedException('Edit');
+		throw new NotImplementedException('edit');
 	}// End action 'edit'
 
 	public function delete($id){
-		throw new NotImplementedException('Delete');
+		throw new NotImplementedException('delete');
 	}// End action 'delete'
 
 	public function view($id = NULL){
-		throw new NotImplementedException('View');
+		throw new NotImplementedException('view');
 	}// End action 'view'
 
 	/**
-	 * Action que realiza a autenticação do operador e efetua a abertura do caixa
-	 * 
-	 * @throws ForbiddenException Usuário Ou Senha não foram recebidos
-	 * @throws NotFoundExcetpion Equipamento não possui um associado
-	 * @throws ForbiddenException Equipamento não está ativo
-	 * 
+	 * Action que efetua o login do usuario n
 	 */
 	public function add() {
 
+		// Extrai as informações da requisição
 		$username = $this->getRequestField('username');
 		$password = $this->getRequestField('password');
-
+		// Valida se os dados são válidos
 		if (empty($username) || empty($password)) {
 			throw new ApiException('Usuário ou senha inválidos', 400);
 		}
+		// Busca o cliente de acordo com os dados recebidos
+		$fullCliente = $this->Cliente->findClient($username, $password);
 
-		$this->Cliente->recursive = 2;
-		$fields = array(
-			// 'Cliente.id'
-			// 'Cliente.*',
-			// 'Perfil.*'
-		);
-		$fullCliente = $this->Cliente->findClient($username, $password, $fields);
-
+		// Valida se encontrou o cliente
 		if(empty($fullCliente)){
 			throw new ApiException('Usuário ou senha inválidos', 400);		
 		}
-
-		// $cliente = $fullCliente['Cliente'];
-		// $clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
-
-		// die(var_dump($cliente, $clientePerfil));
+		// Retorna os dados encontrados
 		$this->data = $fullCliente;
-	}
+	}// End Method 'add'
 }// End Class

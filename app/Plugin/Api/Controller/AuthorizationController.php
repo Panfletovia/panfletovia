@@ -55,10 +55,9 @@ class AuthorizationController extends ApiAppController {
 
 		// Valida se encontrou o cliente
 		if(empty($fullCliente)){
-			throw new ApiException('Usuário ou senha inválidos', 400);		
+			throw new ApiException('Usuário ou senha inválidos', 400);
 		}
 
-		var_dump($fullCliente['ClientePerfil']);
 		// Varre os profiles retirar a camada do vinculo
 		foreach ($fullCliente['ClientePerfil'] as $key => $value) {
 
@@ -66,22 +65,15 @@ class AuthorizationController extends ApiAppController {
 			unset($valueBKP['id']);
 			unset($valueBKP['cliente_id']);
 			unset($valueBKP['perfil_id']);
-
+			// Atribui novamente o valor da variável com os campos necessários
 			$fullCliente['ClientePerfil'][$key] = $valueBKP;
 		}
-		var_dump('+++++++++++++++++++++++++++++');
-		die(var_dump($fullCliente['ClientePerfil']));
 
 		// Busca todos os perfils
 		$allProfiles = $this->Perfil->findAll();
-		// Extrai todos os perfils selecionados pelo usuario
-		$clientProfiles = $this->ClientePerfil->findProfilesByClientId($fullCliente['Cliente']['id']);
-
-		die(var_dump($fullCliente, $clientProfiles));
-		// die(var_dump($fullCliente['ClientePerfil'][0]['Perfil'], $clientProfiles));
-
 		// Retorna os dados encontrados
-		$this->data['cliente'] = $fullCliente['Cliente'];
+		$this->data['client'] = $fullCliente['Cliente'];
 		$this->data['profiles'] = $allProfiles;
+		$this->data['client_profiles'] = $fullCliente['ClientePerfil'];
 	}// End Method 'add'
 }// End Class

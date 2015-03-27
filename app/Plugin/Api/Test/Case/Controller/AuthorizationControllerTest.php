@@ -31,7 +31,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a index 
 	 */
-	public function _test_IndexError(){
+	public function test_IndexError(){
 		$this->validateTestException(
 			$this->fullURL,
 			'GET',
@@ -44,7 +44,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a index 
 	 */
-	public function _test_EditError(){
+	public function test_EditError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'POST',
@@ -57,7 +57,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar o delete
 	 */
-	public function _test_DeleteError(){
+	public function test_DeleteError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'DELETE',
@@ -70,7 +70,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a view
 	 */
-	public function _test_ViewError(){
+	public function test_ViewError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'GET',
@@ -83,7 +83,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Espera erro ao não enviar o campo 'password'.
 	 */
-	public function _test_InvalidPassword() {
+	public function test_InvalidPassword() {
 		// Popula variável com os dados do cliente
 		$cliente = $this->dataGenerator->getCliente();
 		// Não popula o campo 'password' para requisição
@@ -97,7 +97,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Espera erro ao não enviar o campo 'login'.
 	 */
-	public function _test_InvalidUsername() {
+	public function test_InvalidUsername() {
 		//  Popula variável com os dados do cliente
 		$cliente = $this->dataGenerator->getCliente();
 		// Não popula o campo 'username' para requisição
@@ -111,7 +111,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Espera erro ao enviar dados inválido.
 	 */
-	public function _test_ClientNotFound(){
+	public function test_ClientNotFound(){
 		// Salva um cliente válido
 		$this->dataGenerator->saveCliente();
 		// Popula dados para requisição
@@ -125,7 +125,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Espera receber os dados do cliente salvo, sem nenhum erro.
 	 */
-	public function _test_FindClientOK(){
+	public function test_FindClientOK(){
 		// Popula variável com os dados do cliente
 		$cliente = $this->dataGenerator->getCliente();
 		// Salva cliente
@@ -137,12 +137,12 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		// Valida se os campos de resposta são válidos
 		$this->assertNotNull($response);
 		$this->assertNotEmpty($response);
-		$this->assertNotNull($response['cliente']);
-		$this->assertNotEmpty($response['cliente']);
+		$this->assertNotNull($response['client']);
+		$this->assertNotEmpty($response['client']);
 		$this->assertNotNull($response['profiles']);
 		$this->assertNotEmpty($response['profiles']);
 		// Extrai os dados do cliente retornados
-		$responseClient = $response['cliente'];
+		$responseClient = $response['client'];
 		// Extrai os campos de perfils encontrados
 		$profiles = $response['profiles'];
 		// Valida se o cliente retornado é o cliente cadastrado
@@ -170,7 +170,6 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		$this->assertEquals(29, count($profiles));
 	}// End Method 'test_FindClientOK'
 
-
 	/**
 	 * Espera receber os dados do cliente que possua perfil com sub-perfil vinculados
 	 */
@@ -193,13 +192,22 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		// Valida a resposta 
 		$this->assertNotNull($response);
 		$this->assertNotEmpty($response);
-		$this->assertNotNull($response['cliente']);
-		$this->assertNotEmpty($response['cliente']);
+		$this->assertNotNull($response['client']);
+		$this->assertNotEmpty($response['client']);
 		$this->assertNotNull($response['profiles']);
 		$this->assertNotEmpty($response['profiles']);
+		$this->assertNotNull($response['client_profiles']);
+		$this->assertNotEmpty($response['client_profiles']);
+		$this->assertEquals(3, count($response['client_profiles']));
 
-		die(var_dump($response));
+		$this->assertEquals(1, $response['client_profiles'][0]['Perfil']['id']);
+		$this->assertEquals('alimentação', $response['client_profiles'][0]['Perfil']['codigo']);
 
+		$this->assertEquals(2, $response['client_profiles'][1]['Perfil']['id']);
+		$this->assertEquals('supermercados', $response['client_profiles'][1]['Perfil']['codigo']);
+
+		$this->assertEquals(3, $response['client_profiles'][2]['Perfil']['id']);
+		$this->assertEquals('padarias / bistros / cafés', $response['client_profiles'][2]['Perfil']['codigo']);
 	}// End Method 'test_FindClientWithPerfil'
 
 	/**

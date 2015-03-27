@@ -18,7 +18,7 @@ class DATABASE_CONFIG {
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'panfletovia_test',
+        'database' => 'panfletovia_tests',
         'encoding' => 'utf8',
         'port' => 3306
     );

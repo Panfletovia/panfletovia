@@ -5,10 +5,10 @@ class DATABASE_CONFIG {
     public $proxy = array(
         'datasource' => 'Database/Mysql',
         'persistent' => false,
-        'host' => '10.40.10.1',
-        'login' => 's2way_web',
-        'password' => 'web_2013',
-        'database' => 's2way',
+        'host' => 'localhost',
+        'login' => 'root',
+        'password' => '',
+        'database' => 'panfletovia',
         'encoding' => 'utf8',
     );
 
@@ -18,24 +18,9 @@ class DATABASE_CONFIG {
         'host' => 'localhost',
         'login' => 'root',
         'password' => '',
-        'database' => 'selenium',
+        'database' => 'panfletovia_test',
         'encoding' => 'utf8',
         'port' => 3306
     );
 
-    public $digicon = array(
-        'datasource' => 'Database/Mysql',
-        'persistent' => false,
-        'host' => '198.72.123.161',
-        'login' => 'leitor',
-        'password' => 'Digicon123.',
-        'database' => 'dgparkdb2_5_0',
-        'encoding' => 'utf8',
-        'port' => 3306
-    );
-
-    
-    public function __construct() {
-        $this->write = $this->proxy;
-    }
 }

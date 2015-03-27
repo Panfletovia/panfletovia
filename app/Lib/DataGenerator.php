@@ -85,6 +85,7 @@ class DataGenerator extends DatabaseUtils {
         $tipo_pessoa = rand(0, 1);
 
         $nome = 'Entidade ' . rand(1,10000);
+        $rawPassword = 'panfletovia';
 
         return array(
             'Cliente' => array(
@@ -105,10 +106,21 @@ class DataGenerator extends DatabaseUtils {
                 'tipo'            => 'CLIENTE',
                 'criado_em'       => $this->randomDate('Y-m-d H:i:s', 0, 1),
                 'login'           => str_replace(' ', '', $nome) . '@panfletovia.com.br',
-                'senha'           => $this->createPasswordEncrypt('panfletovia'),
-                'sexo'            => 'M'
+                'senha'           => $this->createPasswordEncrypt($rawPassword),
+                'sexo'            => 'M',
+                'raw_password'     => $rawPassword
         ));
     }// End Method 'getCliente'
+
+    public function getClientePerfil($perfilId = 1){
+
+        return array(
+            'ClientePerfil' => array(
+                'cliente_id' => $this->clienteId,
+                'perfil_id' => $perfilId
+            )
+        );
+    }// End Method 'getClientePerfil'
 
     public function createPasswordEncrypt($password){
         return md5(BEFORE_ENCRYPT.$password.AFTER_ENCRYPT);

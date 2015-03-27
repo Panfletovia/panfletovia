@@ -31,7 +31,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a index 
 	 */
-	public function test_IndexError(){
+	public function _test_IndexError(){
 		$this->validateTestException(
 			$this->fullURL,
 			'GET',
@@ -44,7 +44,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a index 
 	 */
-	public function test_EditError(){
+	public function _test_EditError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'POST',
@@ -57,7 +57,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar o delete
 	 */
-	public function test_DeleteError(){
+	public function _test_DeleteError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'DELETE',
@@ -70,7 +70,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Esperando erro ao acessar a view
 	 */
-	public function test_ViewError(){
+	public function _test_ViewError(){
 		$this->validateTestException(
 			$this->url.'1'.$this->extension,
 			'GET',
@@ -83,69 +83,135 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	/**
 	 * Espera erro ao não enviar o campo 'password'.
 	 */
-	public function test_InvalidPassword() {
+	public function _test_InvalidPassword() {
+		// Popula variável com os dados do cliente
 		$cliente = $this->dataGenerator->getCliente();
-		$this->data['username'] = $cliente['Cliente']['login'];
+		// Não popula o campo 'password' para requisição
+		$this->populateData($cliente['Cliente']['login'], null);
+		// Seta a excessão esperada com o seu tipo e a mensagem esperada
 		$this->setExpectedException('ApiException', "Usuário ou senha inválidos");
+		// Envia a requisição
 		$this->sendRequest($this->fullURL, 'POST', $this->data);
 	}// End 'test_InvalidPassword'
 
 	/**
 	 * Espera erro ao não enviar o campo 'login'.
 	 */
-	public function test_InvalidUsername() {
+	public function _test_InvalidUsername() {
+		//  Popula variável com os dados do cliente
 		$cliente = $this->dataGenerator->getCliente();
-		$this->data['password'] = $cliente['Cliente']['senha'];
+		// Não popula o campo 'username' para requisição
+		$this->populateData(null, $cliente['Cliente']['senha']);
+		// Seta a excessão esperada com o seu tipo e a mensagem esperada
 		$this->setExpectedException('ApiException', "Usuário ou senha inválidos");
+		// Envia requisição
 		$this->sendRequest($this->fullURL, 'POST', $this->data);
 	}// End 'test_InvalidUsername'
 
 	/**
 	 * Espera erro ao enviar dados inválido.
 	 */
-	public function test_ClientNotFound(){
+	public function _test_ClientNotFound(){
+		// Salva um cliente válido
 		$this->dataGenerator->saveCliente();
-		$this->data['username'] = 'USERNAME_TEST';
-		$this->data['password'] = 'PASSWORD_TEST';
+		// Popula dados para requisição
+		$this->populateData('USERNAME_TEST', 'PASSWORD_TEST');
+		// Seta excessão esperada com o seu tipo e a mensagem esperada
 		$this->setExpectedException('ApiException', 'Usuário ou senha inválidos');
+		// Envia requisição
 		$this->sendRequest($this->fullURL, 'POST', $this->data);
 	}// End Method 'test_ClientNotFound'
-
 
 	/**
 	 * Espera receber os dados do cliente salvo, sem nenhum erro.
 	 */
-	public function test_FindClientOK(){
+	public function _test_FindClientOK(){
+		// Popula variável com os dados do cliente
+		$cliente = $this->dataGenerator->getCliente();
+		// Salva cliente
+		$this->dataGenerator->saveCliente($cliente);
+		// Popula dados da requisição
+		$this->populateData($cliente['Cliente']['login'], $cliente['Cliente']['raw_password']);
+		// Envia requisição e armazena resposta
+		$response = $this->sendRequest($this->fullURL, 'POST', $this->data);
+		// Valida se os campos de resposta são válidos
+		$this->assertNotNull($response);
+		$this->assertNotEmpty($response);
+		$this->assertNotNull($response['cliente']);
+		$this->assertNotEmpty($response['cliente']);
+		$this->assertNotNull($response['profiles']);
+		$this->assertNotEmpty($response['profiles']);
+		// Extrai os dados do cliente retornados
+		$responseClient = $response['cliente'];
+		// Extrai os campos de perfils encontrados
+		$profiles = $response['profiles'];
+		// Valida se o cliente retornado é o cliente cadastrado
+		$this->assertEquals(1, $responseClient['id']);
+		$this->assertEquals($cliente['Cliente']['cpf_cnpj']        , $responseClient['cpf_cnpj']);
+		$this->assertEquals($cliente['Cliente']['pessoa']          , $responseClient['pessoa']);
+		$this->assertEquals($cliente['Cliente']['nome']            , $responseClient['nome']);
+		$this->assertEquals($cliente['Cliente']['fantasia']        , $responseClient['fantasia']);
+		$this->assertEquals($cliente['Cliente']['data_nascimento'] , $responseClient['data_nascimento']);
+		$this->assertEquals($cliente['Cliente']['telefone']        , $responseClient['telefone']);
+		$this->assertEquals($cliente['Cliente']['cep']             , $responseClient['cep']);
+		$this->assertEquals($cliente['Cliente']['logradouro']      , $responseClient['logradouro']);
+		$this->assertEquals($cliente['Cliente']['numero']          , $responseClient['numero']);
+		$this->assertEquals($cliente['Cliente']['compl']           , $responseClient['compl']);
+		$this->assertEquals($cliente['Cliente']['cidade']          , $responseClient['cidade']);
+		$this->assertEquals($cliente['Cliente']['bairro']          , $responseClient['bairro']);
+		$this->assertEquals($cliente['Cliente']['uf']              , $responseClient['uf']);
+		$this->assertEquals($cliente['Cliente']['ativo']           , $responseClient['ativo']);
+		$this->assertEquals($cliente['Cliente']['tipo']            , $responseClient['tipo']);
+		$this->assertEquals($cliente['Cliente']['criado_em']       , $responseClient['criado_em']);
+		$this->assertEquals($cliente['Cliente']['login']           , $responseClient['login']);
+		$this->assertEquals($cliente['Cliente']['senha']           , $responseClient['senha']);
+		$this->assertEquals($cliente['Cliente']['sexo']            , $responseClient['sexo']);
+		// Valida apenas a quantidade de perfils da base encontrados
+		$this->assertEquals(29, count($profiles));
+	}// End Method 'test_FindClientOK'
+
+
+	/**
+	 * Espera receber os dados do cliente que possua perfil com sub-perfil vinculados
+	 */
+	public function test_FindClientWithPerfil(){
+
+		// Salva cliente
 		$cliente = $this->dataGenerator->getCliente();
 		$this->dataGenerator->saveCliente($cliente);
+		// Salva vinculo cliente X perfil
+		$clientePerfil1 = $this->dataGenerator->getClientePerfil(1);
+		$this->dataGenerator->saveClientePerfil($clientePerfil1);
+		$clientePerfil2 = $this->dataGenerator->getClientePerfil(2);
+		$this->dataGenerator->saveClientePerfil($clientePerfil2);
+		$clientePerfil3 = $this->dataGenerator->getClientePerfil(3);
+		$this->dataGenerator->saveClientePerfil($clientePerfil3);
+		// Popula dados da requisição
+		$this->populateData($cliente['Cliente']['login'], $cliente['Cliente']['raw_password']);
+		// Envia requisição e armazena resposta
+		$response = $this->sendRequest($this->fullURL, 'POST', $this->data);
+		// Valida a resposta 
+		$this->assertNotNull($response);
+		$this->assertNotEmpty($response);
+		$this->assertNotNull($response['cliente']);
+		$this->assertNotEmpty($response['cliente']);
+		$this->assertNotNull($response['profiles']);
+		$this->assertNotEmpty($response['profiles']);
 
-		$this->data['username'] = $cliente['Cliente']['login'];
-		$this->data['password'] = 'panfletovia';
+		die(var_dump($response));
 
-		$responseClient = $this->sendRequest($this->fullURL, 'POST', $this->data);
+	}// End Method 'test_FindClientWithPerfil'
 
-		$this->assertNotNull($responseClient);
-		$this->assertNotEmpty($responseClient);
+	/**
+	 * Método para popular dados do request
+	 */
+	private function populateData($username, $password){
+		if(!empty($username)){
+			$this->data['username'] = $username;
+		}
 
-		$this->assertEquals(1, $responseClient['Cliente']['id']);
-      	$this->assertEquals($cliente['Cliente']['cpf_cnpj'], $responseClient['Cliente']['cpf_cnpj']);
-      	$this->assertEquals($cliente['Cliente']['pessoa'], $responseClient['Cliente']['pessoa']);
-      	$this->assertEquals($cliente['Cliente']['nome'], $responseClient['Cliente']['nome']);
-      	$this->assertEquals($cliente['Cliente']['fantasia'], $responseClient['Cliente']['fantasia']);
-      	$this->assertEquals($cliente['Cliente']['data_nascimento'], $responseClient['Cliente']['data_nascimento']);
-      	$this->assertEquals($cliente['Cliente']['telefone'], $responseClient['Cliente']['telefone']);
-      	$this->assertEquals($cliente['Cliente']['cep'], $responseClient['Cliente']['cep']);
-      	$this->assertEquals($cliente['Cliente']['logradouro'], $responseClient['Cliente']['logradouro']);
-      	$this->assertEquals($cliente['Cliente']['numero'], $responseClient['Cliente']['numero']);
-      	$this->assertEquals($cliente['Cliente']['compl'], $responseClient['Cliente']['compl']);
-      	$this->assertEquals($cliente['Cliente']['cidade'], $responseClient['Cliente']['cidade']);
-      	$this->assertEquals($cliente['Cliente']['bairro'], $responseClient['Cliente']['bairro']);
-      	$this->assertEquals($cliente['Cliente']['uf'], $responseClient['Cliente']['uf']);
-      	$this->assertEquals($cliente['Cliente']['ativo'], $responseClient['Cliente']['ativo']);
-      	$this->assertEquals($cliente['Cliente']['tipo'], $responseClient['Cliente']['tipo']);
-      	$this->assertEquals($cliente['Cliente']['criado_em'], $responseClient['Cliente']['criado_em']);
-      	$this->assertEquals($cliente['Cliente']['login'], $responseClient['Cliente']['login']);
-      	$this->assertEquals($cliente['Cliente']['senha'], $responseClient['Cliente']['senha']);
-      	$this->assertEquals($cliente['Cliente']['sexo'], $responseClient['Cliente']['sexo']);
-	}// End Method 'test_FindClientOK'
+		if(!empty($password)){
+			$this->data['password'] = $password;
+		}
+	}// End Method 'populateData'
 }// End Class

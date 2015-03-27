@@ -66,7 +66,6 @@ class BaseControllerTestCase extends ControllerTestCase {
         return true;
     }
 
-
     protected function sendRequest ($url, $method, $data) {
         $results = $this->testAction($url, array('method' => $method, 'data' => $data, 'return' => 'vars'));
         return $results['data'];

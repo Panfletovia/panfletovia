@@ -14,5 +14,12 @@ class Perfil extends AppModel {
      * @var mixed False or table name
      */
     public $useTable = 'perfil';
+
+    /**
+     * Método para buscar todos os perfils cadastrados
+     */
+    public function findAll(){
+		return $this->find('all');
+    }
     
 }// End Class

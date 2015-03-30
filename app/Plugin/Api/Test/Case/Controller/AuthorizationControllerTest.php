@@ -88,10 +88,17 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		$cliente = $this->dataGenerator->getCliente();
 		// Não popula o campo 'password' para requisição
 		$this->populateData($cliente['Cliente']['login'], null);
-		// Seta a excessão esperada com o seu tipo e a mensagem esperada
-		$this->setExpectedException('ApiException', "Usuário ou senha inválidos");
-		// Envia a requisição
-		$this->sendRequest($this->fullURL, 'POST', $this->data);
+		try{
+			// Envia a requisição
+			$this->sendRequest($this->fullURL, 'POST', $this->data);
+			// Caso não ocorra exception, deverá lançar mensagem de erro
+			$this->fail('Não ocorreu exception esperada');
+		} catch (Exception $e){
+			// Verifica se a classe da exception é a esperada
+			$this->assertEquals('ApiException', get_class($e));
+			// Verifica se a mensagem da exception é a esperada
+			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+		}
 	}// End 'test_InvalidPassword'
 
 	/**
@@ -102,10 +109,17 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		$cliente = $this->dataGenerator->getCliente();
 		// Não popula o campo 'username' para requisição
 		$this->populateData(null, $cliente['Cliente']['senha']);
-		// Seta a excessão esperada com o seu tipo e a mensagem esperada
-		$this->setExpectedException('ApiException', "Usuário ou senha inválidos");
-		// Envia requisição
-		$this->sendRequest($this->fullURL, 'POST', $this->data);
+		try{
+			// Envia a requisição
+			$this->sendRequest($this->fullURL, 'POST', $this->data);
+			// Caso não ocorra exception, deverá lançar mensagem de erro
+			$this->fail('Não ocorreu exception esperada');
+		} catch (Exception $e){
+			// Verifica se a classe da exception é a esperada
+			$this->assertEquals('ApiException', get_class($e));
+			// Verifica se a mensagem da exception é a esperada
+			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+		}
 	}// End 'test_InvalidUsername'
 
 	/**
@@ -116,10 +130,17 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 		$this->dataGenerator->saveCliente();
 		// Popula dados para requisição
 		$this->populateData('USERNAME_TEST', 'PASSWORD_TEST');
-		// Seta excessão esperada com o seu tipo e a mensagem esperada
-		$this->setExpectedException('ApiException', 'Usuário ou senha inválidos');
-		// Envia requisição
-		$this->sendRequest($this->fullURL, 'POST', $this->data);
+		try{
+			// Envia a requisição
+			$this->sendRequest($this->fullURL, 'POST', $this->data);
+			// Caso não ocorra exception, deverá lançar mensagem de erro
+			$this->fail('Não ocorreu exception esperada');
+		} catch (Exception $e){
+			// Verifica se a classe da exception é a esperada
+			$this->assertEquals('ApiException', get_class($e));
+			// Verifica se a mensagem da exception é a esperada
+			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+		}
 	}// End Method 'test_ClientNotFound'
 
 	/**

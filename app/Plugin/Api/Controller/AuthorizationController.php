@@ -37,7 +37,6 @@ class AuthorizationController extends ApiAppController {
 	 * Action que efetua o login do usuario n
 	 */
 	public function add() {
-
 		// Extrai as informações da requisição
 		$username = $this->getRequestField('username');
 		$password = $this->getRequestField('password');
@@ -55,7 +54,7 @@ class AuthorizationController extends ApiAppController {
 
 		// Valida se encontrou o cliente
 		if(empty($fullCliente)){
-			throw new ApiException('Usuário ou senha inválidos', 400);
+			throw new ApiException('Usuário ou senha incorretos', 404);
 		}
 
 		// Varre os profiles retirar a camada do vinculo

@@ -98,6 +98,8 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
 			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+			// Verifica o status code da requisição
+			$this->assertEquals(400, $e->getCode());
 		}
 	}// End 'test_InvalidPassword'
 
@@ -119,6 +121,8 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
 			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+			// Verifica o status code da requisição
+			$this->assertEquals(400, $e->getCode());
 		}
 	}// End 'test_InvalidUsername'
 
@@ -139,7 +143,9 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 			// Verifica se a classe da exception é a esperada
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
-			$this->assertEquals('Usuário ou senha inválidos', $e->getMessage());
+			$this->assertEquals('Usuário ou senha incorretos', $e->getMessage());
+			// Verifica o status code da requisição
+			$this->assertEquals(404, $e->getCode());
 		}
 	}// End Method 'test_ClientNotFound'
 

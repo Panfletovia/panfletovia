@@ -11,7 +11,6 @@ class ApiController extends ApiAppController {
 	* Processa a entrada de dados 
 	*/	
 	public function index() {
-		die(var_dump('teste'));
 		$this->data = array('version' => API_VERSION);
 		$this->data['datetime'] = $this->getDateTime();
 		

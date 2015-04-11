@@ -95,17 +95,19 @@ class BaseControllerTestCase extends ControllerTestCase {
     //     //Armazena o caminho para a url da action
     //     $this->actionPath = $this->controller;
 
-    //     //Atalho para singleton DataGenerator
-            $this->dataGenerator = DataGenerator::get();
-            Configure::write('test', true);
+        //Atalho para singleton DataGenerator
+        $this->dataGenerator = DataGenerator::get();
+        Configure::write('test', true);
         
-    //     if (!isset($this->uses)) {
-    //         $this->uses = array();
-    //     }
-    //     foreach ($this->uses as $fullModel) {
-    //         list($plugin, $model) = pluginSplit($fullModel);
-    //         $this->$model = ClassRegistry::init($fullModel);
-    //     }
+        // Valida se é utilizado ao model
+        if (!isset($this->uses)) {
+            $this->uses = array();
+        }
+        // Varre lista de models para declará-lo
+        foreach ($this->uses as $fullModel) {
+            list($plugin, $model) = pluginSplit($fullModel);
+            $this->$model = ClassRegistry::init($fullModel);
+        }
     }
 
     // private function auth() {

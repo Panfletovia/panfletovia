@@ -242,7 +242,7 @@ class AuthorizationControllerTest extends BaseControllerTestCase {
 	 */
 	private function populateData($username, $password){
 		if(!empty($username)){
-			$this->data['username'] = $username;
+			$this->data['login'] = $username;
 		}
 
 		if(!empty($password)){

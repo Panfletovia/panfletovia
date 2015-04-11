@@ -60,8 +60,60 @@ class AppController extends Controller {
         // $this->Session->write('Session.lastActivity', time());
     }
 
+    // public function beforeFilter() {
+    //     parent::beforeFilter();
+    //     $this->setupDataSources();
+    // }
+
+    private function setupDataSources() {
+        // die(var_dump(ConnectionManager::getDataSource('default')));
+        $server = $this->Session->read('ConnectionManager.server');
+        $write = $this->Session->read('ConnectionManager.write');
+
+        $configured = $write !== null;
+        
+        if (!$configured) {
+            $ds = ConnectionManager::getDataSource('proxy');
+            $host = $ds->config['host'];
+            $port = $ds->config['port'];
+            $user = $ds->config['login'];
+            $password = $ds->config['password'];
+
+            $write = array(
+                'datasource' => 'Database/Mysql',
+                'persistent' => false,
+                'prefix' => '',
+                'encoding' => 'utf8',
+                'database' => $operacao,
+                'login' => $operacao . '_web',
+                'password' => 'web_2013'
+            );
+
+            ClassRegistry::init('ConnectionManager');
+            // $this->Session->write('ConnectionManager.read', $read);
+            $this->Session->write('ConnectionManager.write', $write);
+            $this->Session->write('ConnectionManager.server', $this->getHttpHost());
+        }
+
+        //A conexão padrão usa a de leitura
+        ConnectionManager::drop('default');
+        //Leitura
+        // ConnectionManager::drop('read');
+        //Escrita
+        ConnectionManager::drop('write');
+
+        //A conexão padrão usa a de leitura
+        ConnectionManager::create('default', $write);
+        //Leitura
+        // ConnectionManager::create('read', $read);
+        //Escrita
+        ConnectionManager::create('write', $write);
+
+        die(var_dump($write));
+    }
+
     public function getDataSource() {
-        $source = Configure::read('test')? 'test' : 'write';
+        $source = Configure::read('test') ? 'test' : 'write';
         return ConnectionManager::getDataSource($source);
     }
 }

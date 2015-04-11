@@ -70,7 +70,7 @@ class PerfilController extends ApiAppController {
 		        )
 			)
 		));
-		die(var_dump($fullCliente));
+		// die(var_dump($fullCliente));
 
 		if(empty($fullCliente)){
 			throw new ApiException('Usuário ou senha inválidos', 400);		
@@ -79,7 +79,7 @@ class PerfilController extends ApiAppController {
 		$cliente = $fullCliente['Cliente'];
 		$clientePerfil = $fullCliente['UsuarioPerfil'][0]['Perfil'];
 
-		die(var_dump($cliente, $clientePerfil));
+		// die(var_dump($cliente, $clientePerfil));
 		$this->data = $fullCliente;
 	}
 }// End Class

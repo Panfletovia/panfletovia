@@ -84,7 +84,7 @@ class DataGenerator extends DatabaseUtils {
 
         $tipo_pessoa = rand(0, 1);
 
-        $nome = 'Entidade ' . rand(1,10000);
+        $nome = 'cliente ' . rand(1,10000);
         $rawPassword = 'panfletovia';
 
         return array(

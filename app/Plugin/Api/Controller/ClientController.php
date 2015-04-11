@@ -51,8 +51,8 @@ class ClientController extends ApiAppController {
 			'tipo' => 'CLIENTE',
 			'login' => $login,
 			'senha' => $password,
-			// 'plataforma' => $plataform
-			// 'versao' => $version
+			'plataforma' => $plataform,
+			'versao' => $version
 		));
 
 		$ds = $this->Cliente->getDataSource();

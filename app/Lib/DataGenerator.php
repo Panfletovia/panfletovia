@@ -123,7 +123,14 @@ class DataGenerator extends DatabaseUtils {
     }// End Method 'getClientePerfil'
 
     public function createPasswordEncrypt($password){
-        return md5(BEFORE_ENCRYPT.$password.AFTER_ENCRYPT);
+         // Atribui o valor da senha
+        $newPassword = $password;
+        // Calcula a quantidade de vezes a senha para gerar o hash
+        for ($x = 0; $x < 66; $x++) {
+            $newPassword = md5(BEFORE_ENCRYPT . $newPassword . AFTER_ENCRYPT);
+        }
+        // Retorna a nova senha
+        return $newPassword;
     }
 
     public function randomCpf ($compontos = false) {

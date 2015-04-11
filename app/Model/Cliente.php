@@ -22,7 +22,7 @@ class Cliente extends AppModel {
      * Busca cliente a partir do usuário e senha
      */
     public function findClient($username, $password, $fieldsQuery = array()){
-        $comparatorPassword = md5(BEFORE_ENCRYPT . $password . AFTER_ENCRYPT);
+        $comparatorPassword = $this->passwordHash($password);
         return $this->find('first', array(
             'fields' => $fieldsQuery,
             'conditions' => array(
@@ -32,6 +32,20 @@ class Cliente extends AppModel {
             )
         ));
     }// End Method 'findClient'
+
+    /**
+     * Create hash da senha do usuário
+     */
+    public function passwordHash ($password) {
+        // Atribui o valor da senha
+        $newPassword = $password;
+        // Calcula a quantidade de vezes a senha para gerar o hash
+        for ($x = 0; $x < 66; $x++) {
+            $newPassword = md5(BEFORE_ENCRYPT . $newPassword . AFTER_ENCRYPT);
+        }
+        // Retorna a nova senha
+        return $newPassword;
+    }// End Method 'passwordHash'
     
     /**
      * Display fieldP

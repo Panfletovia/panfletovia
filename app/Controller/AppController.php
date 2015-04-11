@@ -59,4 +59,9 @@ class AppController extends Controller {
         // }
         // $this->Session->write('Session.lastActivity', time());
     }
+
+    public function getDataSource() {
+        $source = Configure::read('test')? 'test' : 'write';
+        return ConnectionManager::getDataSource($source);
+    }
 }

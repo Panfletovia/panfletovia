@@ -38,10 +38,10 @@ class AuthorizationController extends ApiAppController {
 	 */
 	public function add() {
 		// Extrai as informações da requisição
-		$username = $this->getRequestField('username');
+		$login = $this->getRequestField('login');
 		$password = $this->getRequestField('password');
 		// Valida se os dados são válidos
-		if (empty($username) || empty($password)) {
+		if (empty($login) || empty($password)) {
 			throw new ApiException('Usuário ou senha inválidos', 400);
 		}
 		// Busca o cliente de acordo com os dados recebidos
@@ -50,7 +50,7 @@ class AuthorizationController extends ApiAppController {
 		);
 
 		$this->Cliente->recursive = 2;
-		$fullCliente = $this->Cliente->findClient($username, $password, $fields);
+		$fullCliente = $this->Cliente->findClient($login, $password, $fields);
 
 		// Valida se encontrou o cliente
 		if(empty($fullCliente)){

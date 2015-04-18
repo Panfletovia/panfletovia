@@ -146,12 +146,10 @@ class ClientControllerTest extends BaseControllerTestCase {
 		$this->assertNotEmpty($dataBaseClient);
 		// Valida os dados da base com o objeto do cliente 
 		$this->assertEquals($cliente['Cliente']['tipo'], $dataBaseClient['Cliente']['tipo']);
-		die(var_dump($cliente['Cliente']['login'], $dataBaseClient['Cliente']['login']));
 		$this->assertEquals($cliente['Cliente']['login'], $dataBaseClient['Cliente']['login']);
 		$this->assertEquals($cliente['Cliente']['senha'], $dataBaseClient['Cliente']['senha']);
 		$this->assertEquals($cliente['Cliente']['ativo'], $dataBaseClient['Cliente']['ativo']);
-
-		die(var_dump($dataBaseClient));
+		// die(var_dump($dataBaseClient));
 	}// End Method 'test_FindClientOK'
 
 	/**

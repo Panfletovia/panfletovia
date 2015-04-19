@@ -31,6 +31,13 @@ App::uses('Model', 'Model');
  */
 class AppModel extends Model {
 
+    public function __construct($id = false, $table = null, $ds = null) {
+        parent::__construct($id, $table, $ds);
+        $this->test = (bool)Configure::read('test');
+        $this->setDataSource($this->test ? 'test' : 'write');
+        // $this->Behaviors->AppValidate->setParent($this);
+    }
+
 	public function getLastQuery($fromWhereClause = false, $typeQuery = 'WHERE'){
         $dbo = $this->getDatasource();
         $logs = $dbo->getLog();

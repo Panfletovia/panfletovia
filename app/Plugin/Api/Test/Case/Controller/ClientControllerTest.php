@@ -149,8 +149,35 @@ class ClientControllerTest extends BaseControllerTestCase {
 		$this->assertEquals($cliente['Cliente']['login'], $dataBaseClient['Cliente']['login']);
 		$this->assertEquals($cliente['Cliente']['senha'], $dataBaseClient['Cliente']['senha']);
 		$this->assertEquals($cliente['Cliente']['ativo'], $dataBaseClient['Cliente']['ativo']);
-		// die(var_dump($dataBaseClient));
 	}// End Method 'test_FindClientOK'
+
+	/**
+	 * Espera erro ao salvar um cliente, enviando um login já existente na base de dados
+	 */
+	public function test_ErrorSaveClient (){
+		try{
+			// Popula variável com os dados do cliente
+			$cliente = $this->dataGenerator->getCliente();
+			// Salva o cliente 
+			$this->dataGenerator->saveCliente($cliente);
+			// Popula dados da requisição
+			$this->populateData(
+				$cliente['Cliente']['login'], 
+				$cliente['Cliente']['raw_password']);
+			// Envia requisição e armazena resposta
+			$response = $this->sendRequest($this->fullURL, 'POST', $this->data);
+			// Caso não ocorra exception, deverá lançar mensagem de erro
+			$this->fail('Não ocorreu exception esperada');
+		} catch (Exception $e){
+			// Verifica se a classe da exception é a esperada
+			$this->assertEquals('ApiException', get_class($e));
+			// Verifica se a mensagem da exception é a esperada
+			$this->assertEquals('Ocorreu um erro ao efetuar o seu cadastro. Por favor tente novamente mais tarde.', $e->getMessage());
+			// Verifica o status code da requisição
+			$this->assertEquals(500, $e->getCode());
+		}
+	}// End Method 'test_ErrorSaveClient'
+
 
 	/**
 	 * Método para popular dados do request

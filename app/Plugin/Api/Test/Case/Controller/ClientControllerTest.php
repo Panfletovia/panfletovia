@@ -95,7 +95,7 @@ class ClientControllerTest extends BaseControllerTestCase {
 			// Verifica se a classe da exception é a esperada
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
-			$this->assertEquals('Por favor, informe corretamente os dados', $e->getMessage());
+			$this->assertEquals('Por favor, informe corretamente os dados.', $e->getMessage());
 			// Verifica o status code da requisição
 			$this->assertEquals(400, $e->getCode());
 		}
@@ -116,7 +116,7 @@ class ClientControllerTest extends BaseControllerTestCase {
 			// Verifica se a classe da exception é a esperada
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
-			$this->assertEquals('Por favor, informe corretamente os dados', $e->getMessage());
+			$this->assertEquals('Por favor, informe corretamente os dados.', $e->getMessage());
 			// Verifica o status code da requisição
 			$this->assertEquals(400, $e->getCode());
 		}
@@ -152,10 +152,10 @@ class ClientControllerTest extends BaseControllerTestCase {
 	}// End Method 'test_FindClientOK'
 
 	/**
-	 * Espera erro ao salvar um cliente, enviando um login já existente na base de dados
+	 * Espera erro ao salvar um cliente que já está cadastrado
 	 */
-	public function test_ErrorSaveClient (){
-		try{
+	public function test_CustomerAlreadyRegistered(){
+		try {
 			// Popula variável com os dados do cliente
 			$cliente = $this->dataGenerator->getCliente();
 			// Salva o cliente 
@@ -167,15 +167,24 @@ class ClientControllerTest extends BaseControllerTestCase {
 			// Envia requisição e armazena resposta
 			$response = $this->sendRequest($this->fullURL, 'POST', $this->data);
 			// Caso não ocorra exception, deverá lançar mensagem de erro
-			$this->fail('Não ocorreu exception esperada');
+			$this->fail('Não ocorreu exception esperada.');
 		} catch (Exception $e){
 			// Verifica se a classe da exception é a esperada
 			$this->assertEquals('ApiException', get_class($e));
 			// Verifica se a mensagem da exception é a esperada
-			$this->assertEquals('Ocorreu um erro ao efetuar o seu cadastro. Por favor tente novamente mais tarde.', $e->getMessage());
+			$this->assertEquals('Este email já está cadastrado.', $e->getMessage());
 			// Verifica o status code da requisição
-			$this->assertEquals(500, $e->getCode());
+			$this->assertEquals(400, $e->getCode());
 		}
+	}// End Method 'test_CustomerAlreadyRegistered'
+
+	/**
+	 * Espera erro ao salvar um cliente, enviando um login já existente na base de dados
+	 */
+	public function test_ErrorSaveClient (){
+		// Não sei como fazer este teste:
+		// - pois a tabela deverá existir, ou seja, não dá pra deletar a tabela
+		// - pois existe validação de cliente já existente, ou seja, não dá pra enviar os dados já cadastrados
 	}// End Method 'test_ErrorSaveClient'
 
 

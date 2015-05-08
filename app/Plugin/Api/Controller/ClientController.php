@@ -30,7 +30,7 @@ class ClientController extends ApiAppController {
 	}// End action 'view'
 
 	/**
-	 * Action que efetua o cadastro do usuario no sistem
+	 * Action que efetua o cadastro do usuario no sistema
 	 */
 	public function add() {
 
@@ -42,12 +42,19 @@ class ClientController extends ApiAppController {
 
 		// Valida se os dados são válidos
 		if (empty($login) || empty($password)) {
-			throw new ApiException('Por favor, informe corretamente os dados', 400);
+			throw new ApiException('Por favor, informe corretamente os dados.', 400);
+		}
+
+		// Busca um cliente com o mesmo login
+		$findClient = $this->Cliente->findByLogin($login);
+		// Valida se o cliente já existe
+		if (!empty($findClient)) {
+			throw new ApiException('Este email já está cadastrado.', 400);
 		}
 
 		$password = $this->Cliente->passwordHash($password);
 
-		$cliente = array('Cliente' => array(
+		$saveClient = array('Cliente' => array(
 			'tipo' => 'CLIENTE',
 			'login' => $login,
 			'senha' => $password,
@@ -61,7 +68,7 @@ class ClientController extends ApiAppController {
 		$clientId = null;
 
 		try {
-			$client = $this->Cliente->save($cliente);
+			$client = $this->Cliente->save($saveClient);
 			$clientId = $client['Cliente']['id'];
 			$ds->commit();
 		} catch (Exception $e) {
